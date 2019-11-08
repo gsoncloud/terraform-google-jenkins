@@ -20,6 +20,7 @@ resource "google_service_account" "jenkins" {
   display_name = var.jenkins_service_account_display_name
 }
 
+/*
 resource "google_project_iam_member" "jenkins-instance_admin_v1" {
   project = var.project_id
   role    = "roles/compute.instanceAdmin.v1"
@@ -62,4 +63,13 @@ resource "google_storage_bucket_iam_member" "jenkins-upload" {
   role   = "roles/storage.admin"
   member = "serviceAccount:${google_service_account.jenkins.email}"
 }
+*/
+
+resource "google_project_iam_member" "jenkins-project-editor" {
+  project = var.project_id
+  role    = "roles/editor"
+  member  = "serviceAccount:${google_service_account.jenkins.email}"
+}
+
+
 

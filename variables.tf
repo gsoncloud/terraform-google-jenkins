@@ -16,10 +16,12 @@
 
 variable "project_id" {
   description = "The project ID to deploy to"
+  default = "devops-certification-lab"
 }
 
 variable "region" {
   description = "The region to deploy to"
+  default = "us-central1"
 }
 
 variable "jenkins_instance_name" {
@@ -34,7 +36,7 @@ variable "jenkins_instance_machine_type" {
 
 variable "jenkins_boot_disk_source_image" {
   description = "The name of the disk image to use as the boot disk for the Jenkins master"
-  default     = "bitnami-jenkins-2-176-2-0-linux-debian-9-x86-64"
+  default     = "bitnami-jenkins-2-190-2-0-linux-debian-9-x86-64"
 }
 
 variable "jenkins_boot_disk_source_image_project" {
@@ -44,14 +46,17 @@ variable "jenkins_boot_disk_source_image_project" {
 
 variable "jenkins_instance_zone" {
   description = "The zone to deploy the Jenkins VM in"
+  default = "us-central1-a"
 }
 
 variable "jenkins_instance_network" {
   description = "The GCP network to deploy the Jenkins VM in"
+  default = "default"
 }
 
 variable "jenkins_instance_subnetwork" {
   description = "The GCP subnetwork to deploy the Jenkins VM in"
+  default = "default"
 }
 
 variable "jenkins_instance_tags" {
@@ -68,7 +73,7 @@ variable "jenkins_instance_additional_metadata" {
 
 variable "jenkins_initial_password" {
   description = "The initial password to protect Jenkins logins with. Defaults to a random 8-character alphanumeric string. This may not contain special characters."
-  default     = ""
+  default     = "secret123"
 }
 
 variable "jenkins_instance_access_cidrs" {
@@ -89,6 +94,7 @@ variable "jenkins_service_account_display_name" {
 
 variable "jenkins_workers_project_id" {
   description = "The GCP project to deploy Jenkins workers within"
+  default = "devops-certification-lab"
 }
 
 variable "jenkins_workers_instance_cap" {
@@ -108,11 +114,12 @@ variable "jenkins_workers_name_prefix" {
 
 variable "jenkins_workers_region" {
   description = "The name of the region into which to deploy Jenkins workers"
+  default = "us-central1"
 }
 
 variable "jenkins_workers_zone" {
   description = "The name of the zone into which to deploy Jenkins workers"
-  default     = "us-east4-b"
+  default     = "us-central1-a"
 }
 
 variable "jenkins_workers_machine_type" {
@@ -143,7 +150,7 @@ variable "jenkins_workers_labels" {
 
 variable "jenkins_workers_run_as_user" {
   description = "The user to run Jenkins jobs as on workers"
-  default     = "ubuntu"
+  default     = "gsoncloud"
 }
 
 variable "jenkins_workers_boot_disk_type" {
@@ -163,6 +170,7 @@ variable "jenkins_workers_boot_disk_source_image_project" {
 
 variable "jenkins_workers_network" {
   description = "The URL of the network to deploy Jenkins workers into"
+  default = "default"
 }
 
 variable "jenkins_workers_subnetwork" {

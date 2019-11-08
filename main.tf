@@ -96,6 +96,18 @@ data "template_file" "jenkins_startup_script" {
   }
 }
 
+resource "google_service_account" "editor" {
+  project      = var.project_id
+  account_id   = "editor"
+  display_name = "editor"
+}
+
+resource "google_project_iam_member" "project-editor" {
+  project = var.project_id
+  role    = "roles/editor"
+  member  = "serviceAccount:${google_service_account.editor.email}"
+}
+
 resource "google_compute_instance" "jenkins" {
   project      = var.project_id
   name         = var.jenkins_instance_name
@@ -124,7 +136,7 @@ resource "google_compute_instance" "jenkins" {
   )
 
   service_account {
-    email = google_service_account.jenkins.email
+    email = google_service_account.editor.email
 
     scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
